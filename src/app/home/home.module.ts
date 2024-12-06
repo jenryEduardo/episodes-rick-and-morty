@@ -10,6 +10,9 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    MainDashboardComponent
   ]
 })
 export class HomeModule { }
