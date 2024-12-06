@@ -4,9 +4,10 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
 
 
 
+
 @NgModule({
   declarations: [
-    MainDashboardComponent
+    MainDashboardComponent,
   ],
   imports: [
     CommonModule
