@@ -40,13 +40,13 @@ export class MainDashboardComponent implements OnInit {
     });
   }
 
-  // Abre el modal con la información del personaje seleccionado
+
   openModal(character: any): void {
     this.selectedCharacter = character;
     this.showModal = true;
   }
 
-  // Cierra el modal
+
   closeModal(): void {
     this.showModal = false;
     this.selectedCharacter = null;

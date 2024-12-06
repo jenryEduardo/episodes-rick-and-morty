@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainDashboardComponent } from './home/main-dashboard/main-dashboard.component';
 
+
 const routes: Routes = [
-  {path : '',component:MainDashboardComponent}
+  {path : '',component:MainDashboardComponent},
 ];
 
 @NgModule({
