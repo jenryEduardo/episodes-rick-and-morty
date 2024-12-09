@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RickAndMortyApiService } from '../services/rick-and-morty-api.service';
 
 @Component({
@@ -8,11 +9,8 @@ import { RickAndMortyApiService } from '../services/rick-and-morty-api.service';
 })
 export class MainDashboardComponent implements OnInit {
   episodes: any[] = [];
-  characters: any[] = [];
-  selectedCharacter: any = null; // Almacena el personaje seleccionado
-  showModal: boolean = false; // Controla la visibilidad del modal
 
-  constructor(private service: RickAndMortyApiService) {}
+  constructor(private service: RickAndMortyApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchEpisodes();
@@ -32,23 +30,12 @@ export class MainDashboardComponent implements OnInit {
   fetchCharacters(characterUrls: string[]): void {
     this.service.getCharacters(characterUrls).subscribe({
       next: (data) => {
-        this.characters = data;
+        
+        this.router.navigate(['/characters'], { state: { characters: data } });
       },
       error: () => {
         console.log('Error al obtener personajes');
       },
     });
-  }
-
-  // Abre el modal con la información del personaje seleccionado
-  openModal(character: any): void {
-    this.selectedCharacter = character;
-    this.showModal = true;
-  }
-
-  // Cierra el modal
-  closeModal(): void {
-    this.showModal = false;
-    this.selectedCharacter = null;
   }
 }

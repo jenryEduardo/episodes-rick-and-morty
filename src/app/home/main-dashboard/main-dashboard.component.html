@@ -19,35 +19,4 @@
       </tr>
     </tbody>
   </table>
-
-  <!-- Tarjetas de personajes -->
-  <div class="card-container" *ngIf="characters.length > 0">
-    <h3>Personajes</h3>
-    <div class="card" *ngFor="let character of characters">
-      <img [src]="character.image" alt="{{ character.name }}" />
-      <div class="card-body">
-        <h5>{{ character.name }}</h5>
-        <p>Status: {{ character.status }}</p>
-        <p>Especie: {{ character.species }}</p>
-        <button class="btn btn-info" (click)="openModal(character)">
-          Ver Detalles
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal de información del personaje -->
-  <div class="modal" *ngIf="showModal">
-    <div class="modal-content">
-      <h2>Detalles del Personaje</h2>
-      <img [src]="selectedCharacter?.image" alt="{{ selectedCharacter?.name }}" />
-      <p><strong>Nombre:</strong> {{ selectedCharacter?.name }}</p>
-      <p><strong>Status:</strong> {{ selectedCharacter?.status }}</p>
-      <p><strong>Especie:</strong> {{ selectedCharacter?.species }}</p>
-      <p><strong>Género:</strong> {{ selectedCharacter?.gender }}</p>
-      <p><strong>Origen:</strong> {{ selectedCharacter?.origin?.name }}</p>
-      <p><strong>Ubicación actual:</strong> {{ selectedCharacter?.location?.name }}</p>
-      <button class="btn btn-danger" (click)="closeModal()">Cerrar</button>
-    </div>
-  </div>
 </div>
