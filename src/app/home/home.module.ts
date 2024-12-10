@@ -6,8 +6,7 @@ import { CharacterDetailsComponent } from './character-details/character-details
 
 @NgModule({
   declarations: [
-    MainDashboardComponent,
-    CharacterDetailsComponent,
+    MainDashboardComponent
   ],
   imports: [
     CommonModule,
