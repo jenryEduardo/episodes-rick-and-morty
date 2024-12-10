@@ -7,20 +7,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./character-details.component.css'],
 })
 export class CharacterDetailsComponent implements OnInit {
-  characters: any[] = []; 
-  displayedCharacters: any[] = []; 
-  selectedCharacter: any = null; 
-  showModal: boolean = false; 
+  characters: any[] = [];
+  displayedCharacters: any[] = [];
+  selectedCharacter: any = null;
+  showModal: boolean = false;
 
-  currentPage: number = 1; 
-  itemsPerPage: number = 6; 
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
+
+  favorites: any[] = []; 
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     const navigation = history.state;
     this.characters = navigation.characters || [];
-    this.updateDisplayedCharacters(); 
+    this.favorites = navigation.favorites || [];
+    this.updateDisplayedCharacters();
   }
 
   openModal(character: any): void {
@@ -33,8 +36,21 @@ export class CharacterDetailsComponent implements OnInit {
     this.showModal = false;
   }
 
+  toggleFavorite(character: any): void {
+    const index = this.favorites.findIndex(fav => fav.id === character.id);
+    if (index === -1) {
+      this.favorites.push(character); 
+    } else {
+      this.favorites.splice(index, 1); 
+    }
+  }
+
+  isFavorite(character: any): boolean {
+    return this.favorites.some(fav => fav.id === character.id);
+  }
+
   goBack(): void {
-    this.router.navigate(['/dashboard']); 
+    this.router.navigate(['/dashboard'], { state: { favorites: this.favorites } });
   }
 
   previousPage(): void {
@@ -47,7 +63,7 @@ export class CharacterDetailsComponent implements OnInit {
   nextPage(): void {
     if (this.currentPage * this.itemsPerPage < this.characters.length) {
       this.currentPage++;
-      this.updateDisplayedCharacters(); 
+      this.updateDisplayedCharacters();
     }
   }
 

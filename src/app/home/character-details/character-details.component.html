@@ -1,52 +1,54 @@
 <div class="container">
-    <button class="back-button" (click)="goBack()">←</button>
-    <h1>Personajes</h1> 
-  
-    <div class="card-container">
-      <div class="card" *ngFor="let character of displayedCharacters">
-        <img [src]="character.image" alt="{{ character.name }}" />
-        <div class="card-body">
-          <h5>{{ character.name }}</h5>
-          <p>Status: 
-            <span [ngClass]="{
-              'alive': character.status === 'Alive',
-              'dead': character.status === 'Dead',
-              'unknown': character.status === 'unknown'
-            }">{{ character.status }}</span>
-          </p>
-          <p>Especie: {{ character.species }}</p>
-          <button class="btn btn-info" (click)="openModal(character)">
-            Ver Detalles
-          </button>
-        </div>
-      </div>
-    </div>
-  
-    <div class="modal" *ngIf="showModal">
-      <div class="modal-content">
-        <h2>Detalles del Personaje</h2>
-        <img [src]="selectedCharacter?.image" alt="{{ selectedCharacter?.name }}" />
-        <p><strong>Nombre:</strong> {{ selectedCharacter?.name }}</p>
-        <p><strong>Status:</strong> 
+  <button class="back-button" (click)="goBack()">←</button>
+  <h1>Personajes</h1> 
+
+  <div class="card-container">
+    <div class="card" *ngFor="let character of displayedCharacters">
+      <img [src]="character.image" alt="{{ character.name }}" />
+      <div class="card-body">
+        <h5>{{ character.name }}</h5>
+        <p>Status: 
           <span [ngClass]="{
-            'alive': selectedCharacter?.status === 'Alive',
-            'dead': selectedCharacter?.status === 'Dead',
-            'unknown': selectedCharacter?.status === 'unknown'
-          }">{{ selectedCharacter?.status }}</span>
+            'alive': character.status === 'Alive',
+            'dead': character.status === 'Dead',
+            'unknown': character.status === 'unknown'
+          }">{{ character.status }}</span>
         </p>
-        <p><strong>Especie:</strong> {{ selectedCharacter?.species }}</p>
-        <p><strong>Género:</strong> {{ selectedCharacter?.gender }}</p>
-        <p><strong>Origen:</strong> {{ selectedCharacter?.origin?.name }}</p>
-        <p><strong>Ubicación actual:</strong> {{ selectedCharacter?.location?.name }}</p>
-        <button class="btn btn-danger" (click)="closeModal()">Cerrar</button>
+        <p>Especie: {{ character.species }}</p>
+        <button class="btn btn-info" (click)="openModal(character)">
+          Ver Detalles
+        </button>
       </div>
-    </div>
-  
-    <div class="nav-buttons">
-      <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
-      <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= characters.length">
-        Siguiente
-      </button>
     </div>
   </div>
-  
+
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <h2>Detalles del Personaje</h2>
+      <img [src]="selectedCharacter?.image" alt="{{ selectedCharacter?.name }}" />
+      <p><strong>Nombre:</strong> {{ selectedCharacter?.name }}</p>
+      <p><strong>Status:</strong> 
+        <span [ngClass]="{
+          'alive': selectedCharacter?.status === 'Alive',
+          'dead': selectedCharacter?.status === 'Dead',
+          'unknown': selectedCharacter?.status === 'unknown'
+        }">{{ selectedCharacter?.status }}</span>
+      </p>
+      <p><strong>Especie:</strong> {{ selectedCharacter?.species }}</p>
+      <p><strong>Género:</strong> {{ selectedCharacter?.gender }}</p>
+      <p><strong>Origen:</strong> {{ selectedCharacter?.origin?.name }}</p>
+      <p><strong>Ubicación actual:</strong> {{ selectedCharacter?.location?.name }}</p>
+      <button class="btn btn-favorite" (click)="toggleFavorite(selectedCharacter)">
+        <span [ngClass]="{'favorite': isFavorite(selectedCharacter)}">❤</span>
+      </button>
+      <button class="btn btn-danger" (click)="closeModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+    <button (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= characters.length">
+      Siguiente
+    </button>
+  </div>
+</div>

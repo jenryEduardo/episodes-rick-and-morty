@@ -1,22 +1,59 @@
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nombre del Episodio</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let episode of episodes; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ episode.name }}</td>
-        <td>
-          <button class="btn btn-primary" (click)="fetchCharacters(episode.characters)">
-            Ver Personajes
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <label class="switch">
+    <input type="checkbox" [(ngModel)]="showFavorites">
+    <span class="slider"></span>
+  </label>
+  <span>{{ showFavorites ? 'Mostrar Episodios' : 'Mostrar Favoritos' }}</span>
+
+  <div *ngIf="!showFavorites">
+    <h2>Episodios</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre del Episodio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let episode of episodes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ episode.name }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="fetchCharacters(episode.characters)">
+              Ver Personajes
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="showFavorites">
+    <h2>Favoritos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Status</th>
+          <th>Especie</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let favorite of favorites; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ favorite.name }}</td>
+          <td>{{ favorite.status }}</td>
+          <td>{{ favorite.species }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="removeFromFavorites(favorite)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
