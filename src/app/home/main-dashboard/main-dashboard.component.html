@@ -29,18 +29,31 @@
     </table>
   </div>
 
-  <!-- Modal de información del personaje -->
-  <div class="modal" *ngIf="showModal">
-    <div class="modal-content">
-      <h2>Detalles del Personaje</h2>
-      <img [src]="selectedCharacter?.image" alt="{{ selectedCharacter?.name }}" />
-      <p><strong>Nombre:</strong> {{ selectedCharacter?.name }}</p>
-      <p><strong>Status:</strong> {{ selectedCharacter?.status }}</p>
-      <p><strong>Especie:</strong> {{ selectedCharacter?.species }}</p>
-      <p><strong>Género:</strong> {{ selectedCharacter?.gender }}</p>
-      <p><strong>Origen:</strong> {{ selectedCharacter?.origin?.name }}</p>
-      <p><strong>Ubicación actual:</strong> {{ selectedCharacter?.location?.name }}</p>
-      <button class="btn btn-danger" (click)="closeModal()">Cerrar</button>
-    </div>
+  <div *ngIf="showFavorites">
+    <h2>Favoritos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Status</th>
+          <th>Especie</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let favorite of favorites; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ favorite.name }}</td>
+          <td>{{ favorite.status }}</td>
+          <td>{{ favorite.species }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="removeFromFavorites(favorite)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
