@@ -279,3 +279,117 @@ h2 {
     height: 15px;
   }
 }
+/* Reglas generales de responsividad */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1000px;
+    padding: 1.5rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .back-button {
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+  }
+
+  .modal {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .modal-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .modal-content img {
+    width: 70%;
+  }
+
+  .modal-content p {
+    font-size: 1rem;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  .card-body h5 {
+    font-size: 1rem;
+  }
+
+  .card-body p {
+    font-size: 0.75rem;
+  }
+
+  .card-body .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .modal {
+    width: 100%;
+    padding: 0.5rem;
+  }
+
+  .modal-content h2 {
+    font-size: 1rem;
+  }
+
+  .modal-content img {
+    width: 50%;
+  }
+
+  .modal-content p {
+    font-size: 0.875rem;
+  }
+
+  .back-button {
+    top: 0.25rem;
+    left: 0.25rem;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  .switch {
+    width: 40px;
+    height: 20px;
+  }
+
+  .switch .slider::before {
+    width: 15px;
+    height: 15px;
+  }
+}
+
