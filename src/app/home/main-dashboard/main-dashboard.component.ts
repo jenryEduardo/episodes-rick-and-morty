@@ -9,8 +9,8 @@ import { RickAndMortyApiService } from '../services/rick-and-morty-api.service';
 })
 export class MainDashboardComponent implements OnInit {
   episodes: any[] = [];
-  favorites: any[] = []; // Lista de favoritos
-  showFavorites: boolean = false; // Switch para alternar tablas
+  favorites: any[] = []; 
+  showFavorites: boolean = false;
 
   constructor(private service: RickAndMortyApiService, private router: Router) {}
 
